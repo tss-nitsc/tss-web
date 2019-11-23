@@ -2,6 +2,12 @@
 
 > tss-nitsc for web
 
+## Firebase configration
+```bash
+$ cp .env.template .env
+```
+Set firebase web app key in this file.
+
 ## Build Setup
 
 ``` bash
