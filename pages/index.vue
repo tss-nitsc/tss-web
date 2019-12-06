@@ -3,23 +3,17 @@
     <v-flex xs12 sm8 md6>
       <div v-if="isLogin" class="container">
         <div>
-          <h1 class="title">
-            整理番号 1
-          </h1>
-          <h2 class="subtitle">
-            time saving system
-          </h2>
+          <h1 class="title">整理番号 1</h1>
+          <h2 class="subtitle">time saving system</h2>
           <div class="links">
-            <a href="https://nuxtjs.org/" class="button--red">
-              受付
-            </a>
+            <a href="https://nuxtjs.org/" class="button--red"
+              >受付だよ（練習）</a
+            >
           </div>
         </div>
       </div>
       <v-card v-else>
-        <v-card-title class="headline">
-          This is LP.
-        </v-card-title>
+        <v-card-title class="headline">This is LP.</v-card-title>
       </v-card>
     </v-flex>
   </v-layout>
