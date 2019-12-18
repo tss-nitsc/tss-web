@@ -9,9 +9,9 @@
         <v-card-text>
           <v-form @submit.prevent="onSignUp">
             <v-text-field
-              v-model="displayName"
-              label="Name"
-              name="displayName"
+              v-model="organizationName"
+              label="OrganizationName"
+              name="organizationName"
               prepend-icon="mdi-account"
               type="text"
             />
@@ -46,7 +46,7 @@ export default {
   mixins: [apiJobMixin],
   data() {
     return {
-      displayName: '',
+      organizationName: '',
       email: '',
       password: ''
     }
@@ -54,7 +54,7 @@ export default {
   methods: {
     onSignUp() {
       const signUpData = {
-        displayName: this.displayName,
+        organizationName: this.organizationName,
         email: this.email,
         password: this.password
       }
