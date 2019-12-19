@@ -47,6 +47,16 @@ export default {
       }
     }
   },
+  created() {
+    // DOMが作られた後に実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
+  updated() {
+    // DOMが更新された（リロード）後実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
   methods: {
     incrementCurrentTicketNumber() {
       const payload = this.$store.getters.user
