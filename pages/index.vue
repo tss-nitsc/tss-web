@@ -24,11 +24,8 @@
           </v-card-actions>
         </v-card>
       </v-card>
-
       <v-card v-else>
-        <v-card-title class="headline">
-          This is LP.
-        </v-card-title>
+        <v-card-title class="headline">This is LP.</v-card-title>
       </v-card>
     </v-flex>
   </v-layout>
@@ -41,3 +38,29 @@ export default {
   mixins: [apiJobMixin]
 }
 </script>
+
+<style>
+.title {
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 100px;
+  color: #0d0d0e;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-weight: 300;
+  font-size: 42px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 15px;
+}
+
+.links {
+  padding-top: 15px;
+  font-size: 100px;
+}
+</style>
