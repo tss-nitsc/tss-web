@@ -4,8 +4,6 @@
       <v-card class="elevation-12">
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title>{{ user.name }}</v-list-item-title>
-            <v-list-item-title>{{ user.email }}</v-list-item-title>
             <v-list-item-title>{{
               organization.organizationName
             }}</v-list-item-title>
@@ -28,15 +26,6 @@ import apiJobMixin from '@/mixins/apiJobMixin'
 export default {
   mixins: [apiJobMixin],
   computed: {
-    user() {
-      if (this.$store.getters.user) {
-        return this.$store.getters.user
-      }
-      return {
-        name: '',
-        email: ''
-      }
-    },
     organization() {
       if (this.$store.getters['organization/organization']) {
         return this.$store.getters['organization/organization']
