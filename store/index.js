@@ -36,7 +36,7 @@ export const actions = {
       .then((data) => {
         newUser = data.user
         return data.user
-          .updateProfile({ displayName: payload.displayName })
+          .updateProfile({ displayName: payload.organizationName })
           .then(() => {
             const authUser = {
               id: data.user.uid,
@@ -53,7 +53,19 @@ export const actions = {
         const userRef = db.collection('users').doc(newUser.uid)
         return userRef.set({
           email: payload.email,
-          name: payload.displayName,
+          name: payload.organizationName,
+          createdAt: new Date().toISOString()
+        })
+      })
+      .catch((error) => {
+        commit('setBusy', false)
+        commit('setError', error)
+      })
+      .then(() => {
+        // 組織名をデータベースに登録
+        const userRef = db.collection('organizations').doc(newUser.uid)
+        return userRef.set({
+          name: payload.organizationName,
           createdAt: new Date().toISOString()
         })
       })
@@ -72,7 +84,7 @@ export const actions = {
         const authUser = {
           id: data.user.uid,
           email: data.user.email,
-          name: data.user.displayName
+          name: data.user.organizationName
         }
         commit('setUser', authUser)
         commit('setJobDone', true)
