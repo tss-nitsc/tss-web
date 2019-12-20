@@ -9,7 +9,7 @@
           <v-card-text>
             <div>Word of the Day</div>
             <p class="display-3 text--primary">
-              15
+              {{ organization.currentTicketNumber }}
             </p>
             <p>adjective</p>
             <div class="text--primary">
@@ -17,11 +17,14 @@
               "a benevolent smile"
             </div>
           </v-card-text>
-          <v-card-actions>
-            <div class="text-center">
-              <v-btn block width="330" color="primary" dark>受付</v-btn>
-            </div>
-          </v-card-actions>
+          <v-form
+            @submit.prevent="incrementCurrentTicketNumber"
+            class="text-center"
+          >
+            <v-btn block width="330" color="primary" dark type="submit"
+              >受付</v-btn
+            >
+          </v-form>
         </v-card>
       </v-card>
       <v-card v-else>
@@ -35,7 +38,37 @@
 // 以下をimportしておかないとmixinsのisLogin()のcomputedが使えない
 import apiJobMixin from '@/mixins/apiJobMixin'
 export default {
-  mixins: [apiJobMixin]
+  mixins: [apiJobMixin],
+  computed: {
+    organization() {
+      if (this.$store.getters['organization/organization']) {
+        return this.$store.getters['organization/organization']
+      }
+      return {
+        organizationName: '',
+        currentTicketNumber: ''
+      }
+    }
+  },
+  created() {
+    // DOMが作られた後に実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
+  updated() {
+    // DOMが更新された（リロード）後実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
+  methods: {
+    incrementCurrentTicketNumber() {
+      const payload = this.$store.getters.user
+      this.$store.dispatch('organization/incrementCurrentTicketNumber', payload)
+    },
+    jobsDone() {
+      this.removeErrors()
+    }
+  }
 }
 </script>
 
