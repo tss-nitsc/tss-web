@@ -5,9 +5,11 @@
         <v-card-title class="headline">発券完了</v-card-title>
         <v-list-item>
           <v-list-item-content>
+            <div>組織名</div>
             <v-list-item-title>{{
               organization.organizationName
             }}</v-list-item-title>
+            <div>整理番号</div>
             <v-list-item-title>{{
               organization.currentTicketNumber
             }}</v-list-item-title>
@@ -38,7 +40,14 @@ export default {
   computed: {
     qr() {
       const obj = this.$store.getters['organization/organization']
-      let json = JSON.stringify(obj)
+      let json = JSON.stringify(obj, function(key, value) {
+        let ret = value
+        // replacer: 数値も文字列に変換する
+        if (typeof value === 'number') {
+          ret = String(value)
+        }
+        return ret
+      })
       if (obj == null) {
         json = ''
       }
