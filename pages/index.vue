@@ -67,6 +67,7 @@ export default {
     },
     jobsDone() {
       this.removeErrors()
+      this.$router.replace('/completed')
     }
   }
 }
