@@ -3,19 +3,14 @@
     <v-flex xs12 sm8 md6>
       <v-card v-if="isLogin">
         <v-card-title class="headline" max-width="1000">
-          整理番号
+          整理券を発券します
         </v-card-title>
         <v-card class="mx-auto" max-width="344">
           <v-card-text>
-            <div>Word of the Day</div>
-            <p class="display-3 text--primary">
-              {{ organization.currentTicketNumber }}
+            <div>受付中の整理番号</div>
+            <p class="display-3 text--primary text-center">
+              {{ organization.currentTicketNumber + 1 }}
             </p>
-            <p>adjective</p>
-            <div class="text--primary">
-              well meaning and kindly.<br />
-              "a benevolent smile"
-            </div>
           </v-card-text>
           <v-form
             @submit.prevent="incrementCurrentTicketNumber"
@@ -67,6 +62,7 @@ export default {
     },
     jobsDone() {
       this.removeErrors()
+      this.$router.replace('/completed')
     }
   }
 }
