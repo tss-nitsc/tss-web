@@ -6,7 +6,7 @@
           to="/"
           class="toolbar-title, white--text"
           style="text-decoration: none"
-          >My Ticket</nuxt-link
+          >TSS</nuxt-link
         ></v-toolbar-title
       >
       <v-spacer />
