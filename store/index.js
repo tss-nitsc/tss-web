@@ -66,6 +66,8 @@ export const actions = {
         const userRef = db.collection('organizations').doc(newUser.uid)
         return userRef.set({
           name: payload.organizationName,
+          currentTicketNumber: 0,
+          confirmedTicketNumber: 0,
           createdAt: new Date().toISOString()
         })
       })
