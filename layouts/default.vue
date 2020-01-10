@@ -6,7 +6,7 @@
           to="/"
           class="toolbar-title, white--text"
           style="text-decoration: none"
-          >My Ticket</nuxt-link
+          >TSS</nuxt-link
         ></v-toolbar-title
       >
       <v-spacer />
@@ -14,8 +14,8 @@
         <v-btn v-if="!isLogin" text class="white--text" to="/signin" nuxt
           >SignIn</v-btn
         >
-        <v-btn v-else text class="white--text" to="/mypage" nuxt>{{
-          userName
+        <v-btn v-else text class="white--text" to="/console" nuxt>{{
+          organizationName
         }}</v-btn>
         <v-btn v-if="!isLogin" text class="white--text" to="/signup" nuxt
           >SignUp</v-btn
@@ -44,7 +44,7 @@ export default {
         return false
       }
     },
-    userName() {
+    organizationName() {
       // storeからのユーザーネーム取得処理
       return this.$store.getters.user ? this.$store.getters.user.name : ''
     }

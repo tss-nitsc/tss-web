@@ -1,24 +1,25 @@
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <v-card v-if="isLogin" color="#ffffff">
-        <v-card-title class="headline">
-          整理番号
+      <v-card v-if="isLogin">
+        <v-card-title class="headline" max-width="1000">
+          整理券を発券します
         </v-card-title>
         <v-card class="mx-auto" color="#ffffff" dark max-width="344">
           <v-card-text>
-            <p class="display-3 text--primary">
-              15
+            <div>受付中の整理番号</div>
+            <p class="display-3 text--primary text-center">
+              {{ organization.currentTicketNumber + 1 }}
             </p>
-            <div class="text--primary">
-              ただ今のお呼出し番号は〇番です<br />
-            </div>
           </v-card-text>
-          <v-card-actions>
-            <div class="text-center">
-              <v-btn block width="330" color="#ff6347" dark>受付</v-btn>
-            </div>
-          </v-card-actions>
+          <v-form
+            @submit.prevent="incrementCurrentTicketNumber"
+            class="text-center"
+          >
+            <v-btn block width="330" color="primary" dark type="submit"
+              >受付</v-btn
+            >
+          </v-form>
         </v-card>
       </v-card>
       <v-card v-else>
@@ -32,7 +33,38 @@
 // 以下をimportしておかないとmixinsのisLogin()のcomputedが使えない
 import apiJobMixin from '@/mixins/apiJobMixin'
 export default {
-  mixins: [apiJobMixin]
+  mixins: [apiJobMixin],
+  computed: {
+    organization() {
+      if (this.$store.getters['organization/organization']) {
+        return this.$store.getters['organization/organization']
+      }
+      return {
+        organizationName: '',
+        currentTicketNumber: ''
+      }
+    }
+  },
+  created() {
+    // DOMが作られた後に実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
+  updated() {
+    // DOMが更新された（リロード）後実行される
+    const payload = this.$store.getters.user
+    this.$store.dispatch('organization/fetchOrganization', payload)
+  },
+  methods: {
+    incrementCurrentTicketNumber() {
+      const payload = this.$store.getters.user
+      this.$store.dispatch('organization/incrementCurrentTicketNumber', payload)
+    },
+    jobsDone() {
+      this.removeErrors()
+      this.$router.replace('/completed')
+    }
+  }
 }
 </script>
 
