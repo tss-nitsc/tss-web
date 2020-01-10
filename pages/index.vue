@@ -5,7 +5,7 @@
         <v-card-title class="headline" max-width="1000">
           整理券を発券します
         </v-card-title>
-        <v-card class="mx-auto" max-width="344">
+        <v-card class="mx-auto" color="#ffffff" dark max-width="344">
           <v-card-text>
             <div>受付中の整理番号</div>
             <p class="display-3 text--primary text-center">
@@ -91,5 +91,10 @@ export default {
 .links {
   padding-top: 15px;
   font-size: 100px;
+}
+
+.body {
+  background-color: aquamarine;
+  color: blueviolet;
 }
 </style>
