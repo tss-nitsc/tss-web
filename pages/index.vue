@@ -22,8 +22,18 @@
           </v-form>
         </v-card>
       </v-card>
-      <v-card v-else>
-        <v-card-title class="headline">This is LP.</v-card-title>
+      <v-card v-else width="500" height="200">
+        <v-card-title class="headline"
+          ><span style="font-size:150%;">TSSとは・・・</span></v-card-title
+        >
+        <p style="position:absolute;left:100px;">
+          混雑時に、お客様が店頭で待つことな<br />
+          時間を有効に使っていただけるように<br />
+          するためのシステムです。
+        </p>
+        <h1 style="position:absolute;top:150px;left:100px;">
+          <span style="color:red;">登録</span>をお願いします。
+        </h1>
       </v-card>
     </v-flex>
   </v-layout>
