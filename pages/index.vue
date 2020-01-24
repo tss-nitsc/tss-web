@@ -27,7 +27,7 @@
           ><span style="font-size:150%;">TSSとは・・・</span></v-card-title
         >
         <p style="position:absolute;left:100px;">
-          混雑時に、お客様が店頭で待つことな<br />
+          混雑時に、お客様が店頭で待つことなく<br />
           時間を有効に使っていただけるように<br />
           するためのシステムです。
         </p>
